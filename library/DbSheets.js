@@ -13,7 +13,14 @@ function Connect(sheetId, table, schema) {
     start: 1 + columnOffset_,
     end: schema.length - columnOffset_,
   };
-  const connection = { sheet, table, id: sheetId, schema, row, column };
+  const connection = {
+    id: sheetId,
+    sheet,
+    table,
+    schema,
+    row,
+    column,
+  };
 
   return connection;
 }
