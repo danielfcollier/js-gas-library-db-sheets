@@ -7,37 +7,39 @@ function Connect(sheetId, table, schema) {
   const row = {
     offset: rowOffset_,
     start: 1 + rowOffset_,
-    end: sheet.getMaxRows() - rowOffset_,
   };
   const column = {
     offset: columnOffset_,
     start: 1 + columnOffset_,
-    end: sheet.getMaxColumns() - columnOffset_,
+    end: schema.length - columnOffset_,
   };
-  const connection = { sheet, schema, row, column };
+  const connection = { sheet, table, id: sheetId, schema, row, column };
 
   return connection;
 }
 
 function Create(connection, data) {
-  const dbData = Utils.DbConversion_(connection, data);
+  const dbData = DbConversion_(connection, data);
   connection.sheet.appendRow(dbData);
 
+  ServiceLogger_(connection, 'Create', data.id);
   return {
-    createdAt: (new Date()).now(),
+    createdAt: (new Date()).toISOString(),
   };
 }
 
-function Read(connection, { row, id }) {
+function Read(connection, id) {
   const {
     sheet,
     column,
   } = connection;
 
-  const rowTarget = id ? Utils.GetRowById(connection, id) : row;
-  const dbData = sheet.getRange(rowTarget, column.start, 1, column.end).getValues();
+  const rowTarget = GetRowById_(connection, id);
+  const [dbData] = sheet.getRange(rowTarget, column.start, 1, column.end).getValues();
+  const data = JsonConversion_(connection, dbData);
 
-  return Utils.JsonConversion_(connection, dbData);
+  ServiceLogger_(connection, 'Read', id);
+  return data;
 }
 
 function ReadAll(connection) {
@@ -47,37 +49,39 @@ function ReadAll(connection) {
     column,
   } = connection;
 
-  const dbAll = sheet.getRange(row.start, column.start, row.end, column.end).getValues();
+  const dbAll = sheet.getRange(row.start, column.start, sheet.getMaxRows() - row.offset, column.end).getValues();
   const dataAll = dbAll.map(data => JsonConversion_(connection, data));
 
   return dataAll;
 }
 
-function Update(connection, { row, id }, data) {
+function Update(connection, data) {
   const {
     sheet,
     column,
   } = connection;
 
-  const rowTarget = id ? Utils.GetRowById(connection, id) : row;
-  const dbData = Utils.DbConversion_(connection, data);
+  const rowTarget = GetRowById_(connection, data.id);
+  const dbData = DbConversion_(connection, data);
   sheet.getRange(rowTarget, column.start, 1, column.end).setValues([dbData]);
 
+  ServiceLogger_(connection, 'Update', data.id);
   return {
-    updatedAt: (new Date()).now(),
+    updatedAt: (new Date()).toISOString(),
   };
 }
 
-function Delete(connection, { row, id }) {
+function Delete(connection, id) {
   const {
     sheet,
   } = connection;
 
-  const rowTarget = id ? Utils.GetRowById(connection, id) : row;
+  const rowTarget = GetRowById_(connection, id);
   sheet.deleteRow(rowTarget);
 
+  ServiceLogger_(connection, 'Delete', id);
   return {
-    deletedAt: (new Date()).now(),
+    deletedAt: (new Date()).toISOString(),
   };
 }
 
