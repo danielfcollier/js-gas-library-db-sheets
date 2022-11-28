@@ -1,4 +1,4 @@
-# [Library] DB Sheets
+# [Library for Google Apps Script] DB Sheets
 
 For small projects or MVPs, it is possible to use Google Sheets as a database (DB). This library is intended to be use as an ORM to connect with the sheet database and provide CRUD operations on the data.
 
