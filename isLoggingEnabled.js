@@ -1,0 +1,3 @@
+function isLoggingEnabled() {
+  return true;
+}
