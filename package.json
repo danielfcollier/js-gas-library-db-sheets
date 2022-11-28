@@ -1,13 +1,9 @@
 {
-  "name": "asaasapi",
-  "version": "1.0.0",
-  "description": "",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "name": "[Library] DbSheets",
+  "version": "2",
+  "description": "CRUD for Google Sheets DB",
+  "author": "Daniel Collier",
+  "license": "MIT",
   "dependencies": {
     "@google/clasp": "^2.4.1"
   },
