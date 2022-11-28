@@ -13,12 +13,14 @@ There are two ways to import the library to your project:
 
 1. Script Id:
 
-> 13rzxngZvz-NzYQ0IDhAc-lThmAa_mkO-MaghUiix1kHXe875LG6gOZyF
+```
+13rzxngZvz-NzYQ0IDhAc-lThmAa_mkO-MaghUiix1kHXe875LG6gOZyF
+```
 
 2. Add the latest version: `2`
 3. Use the identifier `DBSheets`
 
-This actions will update your `appsscript.json`.
+These actions will update your `appsscript.json`.
 
 Or, you can update it directly adding to the `dependencies` object:
 
@@ -27,7 +29,7 @@ Or, you can update it directly adding to the `dependencies` object:
     "libraries": [
       {
         "userSymbol": "DbSheets",
-        "version": "1",
+        "version": "2",
         "libraryId": "13rzxngZvz-NzYQ0IDhAc-lThmAa_mkO-MaghUiix1kHXe875LG6gOZyF"
       }
     ]
@@ -101,6 +103,4 @@ const { deletedAt } = DbSheets.Delete(connection, id);
 
 If you want (not recommended), it is possible to disable logging by changing the function `isLoggingEnabled`to return `false`. This option might be useful to disable logging during tests.
 
-```
-### Table: ${connection.table.toUpperCase()} <> Action: ${action.toUpperCase()} for Id: ${id}
-```
+The logging is simple, it show the table name, the performed CRUD action and the `id` of the data.
