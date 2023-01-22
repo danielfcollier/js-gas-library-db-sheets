@@ -1,5 +1,3 @@
-// Integration End2End Test
-
 function integrationE2ETest() {
   const results = {};
 
