@@ -38,7 +38,7 @@ Or, you can update it directly adding to the `dependencies` object:
 
 > The script runs in the timezone `Etc/GMT`.
 
-## Library API
+## DbConnection
 
 ```javascript
 const connection = DbSheets.Connect(sheetId, table, schema);
