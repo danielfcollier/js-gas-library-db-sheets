@@ -16,7 +16,7 @@ function integrationE2ETest() {
     const expected = {
       ...dbSettings,
     };
-    const { id, table, schema } = dbConnection;
+    const { id, table, sDbSheets.specchema } = dbConnection;
 
     results[testName] = Test.ExpectToBeEqual(testName, expected, { id, table, schema });
   }

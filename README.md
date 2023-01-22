@@ -17,7 +17,7 @@ There are two ways to import the library to your project:
 13rzxngZvz-NzYQ0IDhAc-lThmAa_mkO-MaghUiix1kHXe875LG6gOZyF
 ```
 
-2. Add the latest version: `2`
+2. Add the latest version: `3`
 3. Use the identifier `DBSheets`
 
 These actions will update your `appsscript.json`.
@@ -38,7 +38,7 @@ Or, you can update it directly adding to the `dependencies` object:
 
 > The script runs in the timezone `Etc/GMT`.
 
-## DbConnection
+## Library API
 
 ```javascript
 const connection = DbSheets.Connect(sheetId, table, schema);
