@@ -46,6 +46,16 @@ function Read(connection, id) {
   return data;
 }
 
+function ReadByRow(connection, rowTarget) {
+  const { sheet, column } = connection;
+
+  const [dbData] = sheet.getRange(rowTarget, column.start, 1, column.end).getValues();
+  const data = JsonConversion_(connection, dbData);
+
+  ServiceLogger_(connection, "ReadByRow", data.id);
+  return data;
+}
+
 function ReadAll(connection) {
   const { sheet, row, column } = connection;
 

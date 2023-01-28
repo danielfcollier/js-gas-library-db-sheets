@@ -1,4 +1,4 @@
-function integrationE2ETest() {
+function integrationTest() {
   const results = {};
 
   const dbSettings = {

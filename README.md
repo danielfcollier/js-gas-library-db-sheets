@@ -17,7 +17,7 @@ There are two ways to import the library to your project:
 13rzxngZvz-NzYQ0IDhAc-lThmAa_mkO-MaghUiix1kHXe875LG6gOZyF
 ```
 
-2. Add the latest version: `3`
+2. Add the latest version: `4`
 3. Use the identifier `DBSheets`
 
 These actions will update your `appsscript.json`.
@@ -29,7 +29,7 @@ Or, you can update it directly adding to the `dependencies` object:
     "libraries": [
       {
         "userSymbol": "DbSheets",
-        "version": "2",
+        "version": "4",
         "libraryId": "13rzxngZvz-NzYQ0IDhAc-lThmAa_mkO-MaghUiix1kHXe875LG6gOZyF"
       }
     ]
@@ -72,6 +72,13 @@ const { createdAt } = DbSheets.Create(connection, data);
 ```javascript
 const id = 1;
 const data = DbSheets.Read(connection, id);
+```
+
+### ReadByRow
+
+```javascript
+const row = 2; // Raw row target
+const data = DbSheets.ReadByRow(connection, row);
 ```
 
 ### Read All
